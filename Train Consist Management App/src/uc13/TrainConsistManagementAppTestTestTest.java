@@ -1,20 +1,28 @@
-package uc13;
+package uc14;
 
-import org.junit.jupiter.api.Test;
-import java.util.*;
-import static org.junit.jupiter.api.Assertions.*;
+class InvalidCapacityException extends Exception {
+    InvalidCapacityException(String msg) {
+        super(msg);
+    }
+}
 
-class UC13Test {
+class PassengerUnit {
+    int capacity;
 
-    @Test
-    void testTime() {
-        List<uc13.CapacityUnit> list = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) list.add(new uc13.CapacityUnit(i));
+    PassengerUnit(int c) throws InvalidCapacityException {
+        if (c <= 0)
+            throw new InvalidCapacityException("Capacity must be greater than zero");
+        capacity = c;
+    }
+}
 
-        long start = System.nanoTime();
-        list.stream().filter(b -> b.getValue() > 60).toList();
-        long end = System.nanoTime();
+public class TrainConsistManagementAppTestTestTest {
+    public static void main(String[] args) {
 
-        assertTrue((end - start) > 0);
+        try {
+            new PassengerUnit(0);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
